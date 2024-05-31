@@ -1,0 +1,74 @@
+import turtle
+import time
+
+def draw_snake(length, angle):
+    """Функция для рисования части тела змеи."""
+    turtle.forward(length)
+    turtle.left(angle)
+
+def draw_segment():
+    """Функция для рисования сегмента змеи."""
+    global snake_len, snake_angle
+    draw_snake(snake_len, snake_angle)
+    draw_snake(snake_len, snake_angle)
+    draw_snake(snake_len, snake_angle)
+    draw_snake(snake_len, snake_angle)
+
+def grow_snake():
+    """Функция для увеличения длины змеи."""
+    global snake_len
+    snake_len += 10
+
+def increase_speed():
+    """Функция для увеличения скорости змеи."""
+    global speed
+    speed += 0.1
+
+def decrease_speed():
+    """Функция для уменьшения скорости змеи."""
+    global speed
+    speed -= 0.1
+
+def turn_left():
+    """Функция для поворота змеи влево."""
+    global snake_angle
+    snake_angle += 20
+
+def turn_right():
+    """Функция """Функция для поворота змеи вправо."""
+    global snake_angle
+    snake_angle -= 20
+
+# Инициализация переменных
+snake_len = 10
+snake_angle = 140
+speed = 1
+
+# Инициализация turtle
+wn = turtle.Screen()
+wn.bgcolor('green')
+turtle.penup()
+turtle.goto(-200, turtle.Screen()
+wn.bgcolor('green')
+turtle.penup()
+turtle.goto(-200, 0)
+turtle.pendown()
+
+# Основной цикл игры
+while True:
+    wn.update()
+    time.sleep(speed)
+    draw_segment()
+    turtle.backward(snake_len)
+    
+    # Управление змеей
+    if turtle.isdown():
+        grow_snake()
+    if turtle.isbuttonpressed(turtle.LEFT):
+        turn_left()
+    if turtle.isbuttonpressed(turtle.RIGHT):
+        turn_right()
+    if turtle.isbuttonpressed(turtle.UP):
+        increase_speed()
+    if turtle.isbuttonpressed(turtle.DOWN):
+        decrease_speed()
